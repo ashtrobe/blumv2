@@ -555,14 +555,6 @@ async def get_data(data_file, proxy_file):
 async def main():
     init()
     banner = f"""{Fore.GREEN}
- ██████  ██    ██   ██████  ██    ██  ███    ███  ██████   ███████  ██████  
-██       ██    ██  ██       ██    ██  ████  ████  ██   ██  ██       ██   ██ 
-██       ██    ██  ██       ██    ██  ██ ████ ██  ██████   █████    ██████  
-██       ██    ██  ██       ██    ██  ██  ██  ██  ██   ██  ██       ██   ██ 
- ██████   ██████    ██████   ██████   ██      ██  ██████   ███████  ██   ██     
-    Auto Claim Bot For Blum - Cucumber Automation
-    Github  : https://github.com/cucumber-pickle
-    Telegram: https://t.me/cucumber_script
         {Style.RESET_ALL}"""
     arg = argparse.ArgumentParser()
     arg.add_argument(
