@@ -467,6 +467,7 @@ class BlumTod:
 
     async def solve(self, task: dict):
         task_id = task.get("id")
+        answers_local = json.loads(open("answers.json").read())
         task_title = task.get("title")
         task_status = task.get("status")
         task_type = task.get("type")
@@ -505,15 +506,16 @@ class BlumTod:
                 verify_url = (
                     f"https://earn-domain.blum.codes/api/v1/tasks/{task_id}/validate"
                 )
-                # answer_url = "https://akasakaid.github.io/blum/answer.json"
-                answer_url = "https://raw.githubusercontent.com/boytegar/BlumBOT/d55dcc033e508ee8dc10218f72f7ac369de1039f/verif.json"
+                answer_url = "https://raw.githubusercontent.com/artlmrx1/artlmrx1.github.io/aeb2f728cc9b41bad90584ef498fe8dd169b825a/answer.json"
                 res_ = await self.http(answer_url, {"User-Agent": "Marin Kitagawa"})
                 answers = res_.json()
                 answer = answers.get(task_id)
                 if not answer:
-                    self.log(f"{yellow}answers to quiz tasks are not yet available.")
-                    break
-                    return
+                    answer = answers_local.get(task_id)
+                    if not answer:
+                        self.log(f"{yellow}answers to quiz tasks are not yet available.")
+                        break
+                        return
                 data = {"keyword": answer}
                 res = await self.http(verify_url, self.headers, json.dumps(data))
                 if res:
